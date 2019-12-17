@@ -42,7 +42,8 @@ int main(void)
 //	newline();
 //	outs_test();
 //	outx4_test();
-	outx8_test();
-
+//	outx8_test();
+//	outx16_test();
+	outi_test();
 }
 

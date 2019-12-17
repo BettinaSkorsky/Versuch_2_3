@@ -139,15 +139,17 @@ void outx8_test()
 }
 
 //5.3.7 outx16
+void outx16(uint16_t w)
+{
+	uint16_t w1,w2;
 
-//	b= b & 0xF000;
-//	b=b>>12;
-//	outx4(b);
-//
-//	b= b & 0x0F00;
-//	b=b>>8;
-//	outx4(b);
+	w1= w & 0xFF00;
+	w1=w1>>8;
+	outx8(w1);
 
+	w2= w & 0x00FF;
+	outx8(w2);
+}
 void outx16_test()
 {
 	initUsart(9600);
@@ -160,6 +162,15 @@ void outx16_test()
 }
 
 //5.3.8 outi
+void outi(int32_t i)
+{
+	unsigned char ziffer;
+	unsigned short int A = i;
+	A=A/10;
+	ziffer=A%10;
+	outx16(ziffer);
+}
+
 void outi_test()
 {
 	initUsart(9600);
