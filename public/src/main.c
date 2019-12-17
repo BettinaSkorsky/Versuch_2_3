@@ -2,8 +2,6 @@
 #include "led.h"
 #include "usart.h"
 
-#include "led.h"
-
 void draw_rect_center()
 {
 
@@ -34,10 +32,24 @@ int main(void)
 	LCD_LOG_DeInit();
 
 	BSP_LCD_Init();
+
 	BSP_LCD_Clear(LCD_COLOR_YELLOW);
 	draw_rect_center();
 	draw_text_center("Hallo MIT Labor!");
+
+	outc_test();
+//	outc('\r');
+	newline();
+	outs_test();
 	while( 1)
-		;
+	{
+
+		/*outs_test();
+		outx4_test();
+		outx8_test();
+		outx16_test();
+		outi_test();*/
+	}
 
 }
+
