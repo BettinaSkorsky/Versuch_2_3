@@ -37,19 +37,12 @@ int main(void)
 	draw_rect_center();
 	draw_text_center("Hallo MIT Labor!");
 
-	outc_test();
+//	outc_test();
 //	outc('\r');
-	newline();
-	outs_test();
-	while( 1)
-	{
-
-		/*outs_test();
-		outx4_test();
-		outx8_test();
-		outx16_test();
-		outi_test();*/
-	}
+//	newline();
+//	outs_test();
+//	outx4_test();
+	outx8_test();
 
 }
 

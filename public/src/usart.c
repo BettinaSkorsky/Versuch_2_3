@@ -87,8 +87,12 @@ void outs_test()
 //5.3.5 outx4
 void outx4(uint8_t n)
 {
-	n = n;
-	return n;
+	n = n & 0x0f;
+	if (n <= 9)
+		n=n+48;
+	else
+		n=n+55;
+	outc(n);
 }
 
 void outx4_test()
@@ -103,6 +107,17 @@ void outx4_test()
 }
 
 //5.3.6 outx8
+void outx8(uint8_t b)
+{
+	uint8_t b1,b2;
+
+	b1=(b & 0xF0)>>4;
+	outx4(b1);
+
+	b2=(b & 0x0F);
+	outx4(b2);
+
+}
 void outx8_test()
 {
 	initUsart(9600);
@@ -110,16 +125,29 @@ void outx8_test()
 	for (int i = 0; i<32; i++)
 	{
 		outx8(byte+i);
+		outc(' ');
 	}
 	outc('\n');
+	outc('\r');
 	for (int i = 0; i<16; i++)
 	{
 		outx8(15-i+(i<<4));
+		outc(' ');
 	}
 	outc('\n');
+	outc('\r');
 }
 
 //5.3.7 outx16
+
+//	b= b & 0xF000;
+//	b=b>>12;
+//	outx4(b);
+//
+//	b= b & 0x0F00;
+//	b=b>>8;
+//	outx4(b);
+
 void outx16_test()
 {
 	initUsart(9600);
