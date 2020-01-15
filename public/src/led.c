@@ -54,7 +54,7 @@ void display_LED(int number, uint32_t color)
 }
 
 //5.4.5
-BSP_TS_INIT(480,276
+BSP_TS_INIT(480,276);
 void check_touch_panel() {
 char formatString[] = "X=%3d, Y=%3d, S=%3d #=%3d";
 const int bufSIZE = 100;
