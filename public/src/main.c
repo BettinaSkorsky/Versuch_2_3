@@ -37,6 +37,8 @@ void draw_text_2(int number, char *text)
     BSP_LCD_SetBackColor(LCD_COLOR_GREEN);
     BSP_LCD_DisplayStringAt(centerX-textW*number,centerY-textH/2, (uint8_t *)text, LEFT_MODE);
 }
+
+
 int main(void)
 {
     configure_ports_input(1, 0xc300);
@@ -48,12 +50,16 @@ int main(void)
 //    outs("DOWN");
 //    outs("STEP n");
 //    outs("STOP");
-//    draw_rect_center();
+    //draw_rect_center();
     //draw_text_center("Hallo MIT Labor!");
     display_LED(2, LCD_COLOR_GREEN);
     display_LED(4, LCD_COLOR_GREEN);
     display_LED(6, LCD_COLOR_GREEN);
     display_LED(8, LCD_COLOR_GREEN);
+    draw_text_2(2, "STOP");
+    draw_text_2(8, "STEP n ="); //n ausgeben fehlt
+    draw_text_2(18,"UP");
+    draw_text_2(7, "DOWN");
 //    outc_test();
 //    outc('\r');
 //    newline();
@@ -62,48 +68,48 @@ int main(void)
 //    outx8_test();
 //    outx16_test();
 //    outi_test();
-    int i=0, n=1;
+		int i=0, n=1;
     while(1)
-//5.4.2
-//    {
-//        if ((virtual_switch_port() & 0b0001) == 0){ //S1
-//                display_LED(2, LCD_COLOR_RED);
-//        }
-//        if ((virtual_switch_port() & 0b0010) == 0)    //S2
-//                display_LED(4, LCD_COLOR_RED);
-//        if ((virtual_switch_port() & 0b0100) == 0)    //S3
-//                display_LED(6, LCD_COLOR_RED);
-//        if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
-//                display_LED(8, LCD_COLOR_RED);
-    {
+    {	 //5.4.2
+        if ((virtual_switch_port() & 0b0001) == 0) 	//S1
+                display_LED(2, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b0010) == 0)    //S2
+                display_LED(4, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b0100) == 0)    //S3
+                display_LED(6, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
+                display_LED(8, LCD_COLOR_RED);
+    }
 //5.4.3
-            if ((virtual_switch_port() & 0b0001) == 0) //S1
-                    display_LED(2, LCD_COLOR_RED);
-            if ((virtual_switch_port() & 0b0010) == 0)    //S2
-                    display_LED(4, LCD_COLOR_RED);
-            if ((virtual_switch_port() & 0b0100) == 0){    //S3
-                    n+=5;i++;outi(n);}
-            if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
-                    display_LED(8, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b0001) == 0) //S1
+                display_LED(2, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b0010) == 0)    //S2
+                display_LED(4, LCD_COLOR_RED);
+        if ((virtual_switch_port() & 0b0100) == 0){    //S3
+                n+=5;i++;outi(n);}
+        if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
+                display_LED(8, LCD_COLOR_RED);
+
             if (i=4) n=1;
-            else
-                {    HAL_Delay(100);
+            else{
+            		HAL_Delay(100);
                     display_LED(2, LCD_COLOR_GREEN);
-                    //HAL_Delay(100);
+                    HAL_Delay(100);
                     display_LED(4, LCD_COLOR_GREEN);
-                    //HAL_Delay(100);
+                    HAL_Delay(100);
                     display_LED(6, LCD_COLOR_GREEN);
-                    //HAL_Delay(100);
+                    HAL_Delay(100);
                     display_LED(8, LCD_COLOR_GREEN);
-                    //HAL_Delay(100);
+                    HAL_Delay(100);
                 }
 //5.4.4
                 draw_text_2(2, "STOP");
                 draw_text_2(8, "STEP n ="); //n ausgeben fehlt
-                draw_text_2(18, "UP");
+                draw_text_2(18,"UP");
                 draw_text_2(7, "DOWN");
 //5.4.5
     
     //int check_LED_area();
     }
-}
+
+

@@ -44,12 +44,13 @@ uint8_t virtual_switch_port(){
 	Schalter = ((Schalter & 0x300)>>8)|((Schalter & 0xc000)>>12);
 	return Schalter;
 }
-//5.4.2
+// //5.4.2
 void display_LED(int number, uint32_t color)
 {
 	uint16_t rectSize = 50;
 	uint16_t leftX= BSP_LCD_GetXSize()*number;
 	uint16_t centerY= BSP_LCD_GetYSize()/4;
+
 	uint16_t rectX= leftX-rectSize*number;
 	uint16_t rectY= centerY-rectSize/2;
 	BSP_LCD_SetTextColor(color);
@@ -57,7 +58,31 @@ void display_LED(int number, uint32_t color)
 
 }
 
+
 //5.4.5
+
+//void check_touch_panel()
+//{															//testfunktion des Tochdisplays
+//	char formatString[] = "X=%3d, Y=%3d, S=%3d #=%3d";
+//	const int bufSIZE = 100;
+//	char outString[bufSIZE];
+//	TS_StateTypeDef touchState;
+//
+//	if ((BSP_TS_GetState(&touchState) == TS_OK) && (touchState.touchDetected))
+//	{
+//		draw_text_center("TOUCH");
+//		char outString[100];
+//		snprintf(outString, bufSIZE, formatString,
+//				(int)touchState.touchX[0], (int)touchState.touchY[0],
+//				(int)touchState.touchWeight[0], touchState.touchDetected);
+//		draw_text_bottom(outString);
+//	} else
+//	{
+//		draw_text_center("     ");
+//		snprintf(outString, bufSIZE, formatString, -1, -1, -1, 0);
+//		draw_text_bottom(outString);
+//	}
+//}
 
 /*void check_touch_panel() {
 BSP_TS_INIT(480,276);

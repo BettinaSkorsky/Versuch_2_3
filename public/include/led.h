@@ -43,4 +43,8 @@ void virtual_led_init();
 
 void virtual_led_port(uint8_t vport);
 
+void display_LED();
+
+void check_touch_panel();
+
 #endif // BLINKLED_H_
