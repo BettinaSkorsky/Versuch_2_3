@@ -104,6 +104,6 @@ int main(void)
                 draw_text_2(7, "DOWN");
 //5.4.5
     
-    int check_LED_area();
+    //int check_LED_area();
     }
 }
