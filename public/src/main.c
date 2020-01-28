@@ -42,11 +42,11 @@ void draw_text_2(int number, char *text)
 //Thema 6.3.1 ADC Initialisierung und Test
 
 //6.3.1.1 Initialisierung und Start
-void init_ADC() 
+void init_ADC()
 {
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; 						// GPIOA clock an
 	GPIOA->MODER |= GPIO_MODER_MODER0_0 | GPIO_MODER_MODER0_1; 	// Analog Mode
-           
+
 	RCC->APB2ENR |= RCC_APB2ENR_ADC3EN; 						//clock ADC3 an
 	ADC->CCR  |= ADC_CCR_ADCPRE_0; 								// Clock auf Teiler vier
 	ADC3->CR2 |= ADC_CR2_ADON;    								// ADC an, dauert bis aktiv.
@@ -86,13 +86,13 @@ int main(void)
 //    outx8_test();
 //    outx16_test();
 //    outi_test();
-	
+
 /*
 //6.3.1.1 Initialisierung und Start-----------
-	init_adc(false);		
+	init_adc(false);
 	//initialisiert den adc, false bedeutet er befindet sich im continius...
 	//...mode und true bedeutet er ist im single shot modus
-	start_adc();			
+	start_adc();
 	//startet die wandlung, im Single shot modus bedeutet das das nur...
 	//...einmal gewandelt wird bis die funktion erneut aufgerufen wird
 	//--------------------------------------------
@@ -101,61 +101,61 @@ int main(void)
 */
 		int i=0, n=1;
 	while(1)
-	{	
+	{
 		/*
 		//6.3.2 Interrupt
 		char buffer[20];
-		snprintf(buffer, sizeof(buffer),"%5d:%2d.%02dV\n", time_ref/1000, value/1000, (value%1000)/10);		
+		snprintf(buffer, sizeof(buffer),"%5d:%2d.%02dV\n", time_ref/1000, value/1000, (value%1000)/10);
 		//schreibt den aktuellen wert des adc in der form "tt 0.00V"
-		
+
 		draw_text_center(buffer);		//gibt den char auf das Display aus
 
 		//es wird eine bitmaske generiert mithilfe sich eine "analoge Anzeige" darstellen lässt
-		uint8_t Dioden=0xff<<adc_get()/32;	
-		//zuerst werden 8 bit zu 1, dadurch das der Integer unsigned ist werden nullen nachgezogen beim verschieben, 
+		uint8_t Dioden=0xff<<adc_get()/32;
+		//zuerst werden 8 bit zu 1, dadurch das der Integer unsigned ist werden nullen nachgezogen beim verschieben,
 		//es wird jeweils um die entsprechenden stellen verschoben
-		virtual_Led(~Dioden);				
+		virtual_Led(~Dioden);
 		// nutzt die Funktion virtual_Led und negiert den uint8_t
-		
+
 		//6.3.3 Synchronisation mit dem Timer
-		int time_ref = HAL_GetTick();		
+		int time_ref = HAL_GetTick();
 		//Funktion um eine Referenzzeit zu bilden die mit abgebildet wird
-		int value = adc_in_millivolt(adc_get());	
+		int value = adc_in_millivolt(adc_get());
 		// in value wird der aktuelle wert des adc gespeichert	durch aufruf der beiden funktionen
 		*/
-		
+
 		//5.4.2
-		if ((virtual_switch_port() & 0b0001) == 0) 	//S1
+		/*if ((virtual_switch_port() & 0b0001) == 0) 	//S1
 			display_LED(2, LCD_COLOR_RED);
 		if ((virtual_switch_port() & 0b0010) == 0)    	//S2
 			display_LED(4, LCD_COLOR_RED);
 		if ((virtual_switch_port() & 0b0100) == 0)   	//S3
 			display_LED(6, LCD_COLOR_RED);
 		if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
-		display_LED(8, LCD_COLOR_RED);
-    	}
+//		display_LED(8, LCD_COLOR_RED);*/
+
 //5.4.3
 	if ((virtual_switch_port() & 0b0001) == 0) //S1
 		display_LED(2, LCD_COLOR_RED);
+		HAL_Delay(100);
 	if ((virtual_switch_port() & 0b0010) == 0)    //S2
 		display_LED(4, LCD_COLOR_RED);
+		HAL_Delay(100);
 	if ((virtual_switch_port() & 0b0100) == 0){    //S3
-		n+=5;i++;outi(n);}
+		display_LED(6, LCD_COLOR_RED);
+		HAL_Delay(100);
+		n+=5;i++;
+		outi(&n);}
 	if ((virtual_switch_port() & 0b1000) == 0)     //Button1... S4
 		display_LED(8, LCD_COLOR_RED);
-
-	if (i=4) n=1;
-	else
-	{
 		HAL_Delay(100);
+	if ((virtual_switch_port() & 0b0000) == 0)
 		display_LED(2, LCD_COLOR_GREEN);
-		HAL_Delay(100);
 		display_LED(4, LCD_COLOR_GREEN);
-		HAL_Delay(100);
 		display_LED(6, LCD_COLOR_GREEN);
-		HAL_Delay(100);
 		display_LED(8, LCD_COLOR_GREEN);
-		HAL_Delay(100);
+	if (i=4)
+		n=1;
 	}
 //5.4.4
 		draw_text_2(2, "STOP");
@@ -163,8 +163,9 @@ int main(void)
 		draw_text_2(18,"UP");
 		draw_text_2(7, "DOWN");
 //5.4.5
-    
+
     //int check_LED_area();
 }
+
 
 
