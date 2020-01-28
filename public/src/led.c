@@ -25,8 +25,8 @@ void configure_ports_input (int gpioNumber, uint16_t PinMask)
 	while (PinMask)
 	{
 		if (1 & PinMask)
-		{								//Test auf unterstes Bit gesetzt
-			init_port_input (gpioNumber, pinPosition);		//Initialisierung mit init_port_input
+		{												//Test auf unterstes Bit gesetzt
+			init_port_input (gpioNumber, pinPosition);	//Initialisierung mit init_port_input
 		}
 		PinMask = PinMask>>1;							//pinMask um eine Stelle nach rechts schieben
 		pinPosition++;
@@ -87,7 +87,7 @@ uint8_t Tast1(){		// diese 4 funktionen trennen die einzelnen Schalter wieder vo
 	 	 	 HAL_Delay(time);
 	 	 	 	 }
 	 	 	 	 }
- 
+
  void display_led(int number,uint32_t color){	//Zeichnet ein Rechteck auf das Display
 	  	uint16_t rectSize = 40;					//größe ist 40Pixel
 	 	uint16_t displayX  = BSP_LCD_GetXSize()/5;	//teilt das Display durch 5
@@ -174,7 +174,7 @@ uint8_t Tast1(){		// diese 4 funktionen trennen die einzelnen Schalter wieder vo
 /*int check_LED_area(){
 		int TouchX; // X Position aller Beruehrungen
 		int TouchY; // Y Postitioin aller Beruehrungen
-		int i;                                                                   
+		int i;
 		int Touch;
 		TS_StateTypeDef touchState;
 		BSP_TS_GetState(&touchState);
@@ -239,8 +239,8 @@ draw_text_bottom(outString);
 // ----------------------------------------------------------------------------
 //Thema 6.3.1 ADC Initialisierung und Test
 
-/*um boolsche Variablen (true und false)mit C zu nutzen wurde 
-in led.h einen Typedef undsigned char bool, 
+/*um boolsche Variablen (true und false)mit C zu nutzen wurde
+in led.h einen Typedef undsigned char bool,
 #define true 1 und #define false 0 eingeführt */
 
 //6.3.1.1 Initialisierung und Start-----------------
@@ -257,7 +257,7 @@ void init_adc(bool single_shot) //noch in die led.h rein
 	//ADC3->CR2 |= ADC_CR2_ALIGN;								// Linksbuendig abspeichern
 	if(single_shot==false)
 	{
-		ADC3->CR2 |= ADC_CR2_CONT;    
+		ADC3->CR2 |= ADC_CR2_CONT;
 	}	// Staendig wandeln
 	else
 	{
@@ -273,7 +273,7 @@ void start_adc() //noch in die led.h rein
 //--------------------------------------------------
 //6.3.1.2 Umrechnung in mV--------------------------
 uint16_t adc_get() //noch in die led.h rein
-{	// mit dieser funktion wird der aktuelle wert des adc in einen integer 
+{	// mit dieser funktion wird der aktuelle wert des adc in einen integer
 	//geschrieben und mit return ausgegeben
 	int adress = (ADC3->DR&0xff);
 	return adress;
